@@ -26,6 +26,6 @@ class Usuario
     }
 
     public function Alta(){        
-        echo (GuardarUsuarioTxt("\Usuarios.csv", $this->__toString()) > 0) ? "Se agrego el usuario correctamente al archivo" : "Error al guardar";
+        echo (GuardarUsuarioTxt("Usuarios.csv", $this->__toString()) > 0) ? "Se agrego el usuario correctamente al archivo" : "Error al guardar";
     }
 }
