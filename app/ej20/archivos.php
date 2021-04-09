@@ -25,14 +25,14 @@ function GuardarUsuarioTxt($file_name, $datostxt)
     //El archivo no existe, creo uno nuevo
     if(!file_exists($file_name) && filesize($file_name) == 0){
 
-        $file = fopen($file_name, "w");
+        $file = fopen('C:\Users\Voolkia\Desktop'.$file_name, "w");
 
         $ret = fwrite($file, $datostxt);
 
         fclose($file);
     }else{ //Ya existe, utilizo la "a" para escribir al final
 
-        $file = fopen($file_name, "a");
+        $file = fopen('C:\Users\Voolkia\Desktop'.$file_name, "a");
 
         $ret = fwrite($file, "\n".$datostxt);
 
