@@ -38,6 +38,7 @@ function GuardarUsuarioTxt($file_name, $datostxt)
 
         fclose($file);
     }
+    echo $datostxt;
     //Retorno 1 = Se guardo, 0 = Hubo error
     return $ret;
 }
