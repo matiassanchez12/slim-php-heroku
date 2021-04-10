@@ -36,25 +36,24 @@ class Usuario
         
         $listado = $arrayUsuarios;
 
-        // $listado = "";
+        $listado = "";
         
-        // if($arrayUsuarios !== []){
+        if($arrayUsuarios !== []){
 
-        //     $listado = "<ul>";
+            $listado = "<ul>";
             
-        //     foreach ($arrayUsuarios as $usuario) {
+            foreach ($arrayUsuarios as $usuario) {
                 
-        //         $atributos = explode(",", $usuario);
+                $atributos = explode(",", $usuario);
 
-        //         $usuario = new Usuario($atributos[0], $atributos[1], $atributos[2]);
+                $usuario = new Usuario($atributos[0], $atributos[1], $atributos[2]);
 
-        //         $listado .= "<li>".$usuario."<li><br>";
-        //     }
+                $listado .= "<li>".$usuario."<li><br>";
+            }
 
-        //     $listado .= "</ul>";
-        
-        // }
+            $listado .= "</ul>";
 
+        }
 
         return $listado;
     }

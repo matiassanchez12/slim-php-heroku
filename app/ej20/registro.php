@@ -10,19 +10,32 @@
 
 require "usuario.php";
 
-try{
-    if (isset($_POST["usuario"]) && isset($_POST["contrasenia"]) && isset($_POST["email"])) {
-    
-        $usuario = new Usuario($_POST["usuario"], $_POST["contrasenia"], $_POST["email"]);
-        
-        $usuario->Alta();
-    }
-}catch(Exception $e){
-    
-    echo $e->getMessage();
-}
-// $listado = Usuario::Listar();    
+switch ($_POST["tipo"]) {
+    case 'listar':
 
-// if($listado != ""){
-//     echo $listado;
-// }
+        $listado = Usuario::Listar();    
+
+        if($listado != ""){
+
+            echo $listado;
+        }
+        break;
+    case 'alta':
+        try{
+            
+            if (isset($_POST["usuario"]) && isset($_POST["contrasenia"]) && isset($_POST["email"])) {
+            
+                $usuario = new Usuario($_POST["usuario"], $_POST["contrasenia"], $_POST["email"]);
+                
+                $usuario->Alta();
+            }
+        }catch(Exception $e){
+            
+            echo $e->getMessage();
+        }
+        break;
+    default:
+        echo "";
+        break;
+}
+
