@@ -7,7 +7,7 @@ function CargarUsuarioTxt($file_name)
 
     if(file_exists($file_name) && filesize($file_name) > 0){
         
-        $file = fopen($file_name, "r");
+        $file = fopen("C:\Users\Voolkia\Desktop\ $file_name", "r");
 
         $data = fread($file, filesize($file_name)); 
         
