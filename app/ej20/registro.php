@@ -10,19 +10,19 @@
 
 require "usuario.php";
 
-// try{
-//     if (isset($_POST["usuario"]) && isset($_POST["contrasenia"]) && isset($_POST["email"])) {
+try{
+    if (isset($_POST["usuario"]) && isset($_POST["contrasenia"]) && isset($_POST["email"])) {
     
-//         $usuario = new Usuario($_POST["usuario"], $_POST["contrasenia"], $_POST["email"]);
+        $usuario = new Usuario($_POST["usuario"], $_POST["contrasenia"], $_POST["email"]);
         
-//         $usuario->Alta();
-//     }
-// }catch(Exception $e){
+        $usuario->Alta();
+    }
+}catch(Exception $e){
     
-//     echo $e->getMessage();
-// }
-$listado = Usuario::Listar();    
-
-if($listado != ""){
-    echo $listado;
+    echo $e->getMessage();
 }
+// $listado = Usuario::Listar();    
+
+// if($listado != ""){
+//     echo $listado;
+// }
