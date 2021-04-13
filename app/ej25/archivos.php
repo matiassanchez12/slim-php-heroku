@@ -23,14 +23,16 @@ function EscribirArchivoJSONarray($filename, $array)
 {
     $ret = 0;
 
-    if (file_exists($filename) && filesize($filename) > 0 && isset($array)) {
+    if (!file_exists($filename) && filesize($filename) == 0) {
 
         $file = fopen($filename, "w");
 
         $ret = fwrite($file, json_encode($array));
         
         fclose($file);
+
     }
+
     return $ret;
 }
 

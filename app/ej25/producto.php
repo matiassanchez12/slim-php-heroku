@@ -55,8 +55,6 @@ class Producto
             $i = 0;
 
             foreach ($arrayProductos as $data) {
-                // var_dump($auxProducto);
-
                 $producto = new Producto($data->_codigoBarras, $data->_nombre, $data->_tipo, $data->_stock, $data->_precio, $data->_id);
                 
                 // var_dump($producto->_id);

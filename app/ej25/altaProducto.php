@@ -20,7 +20,7 @@ if (
     && isset($_POST["stock"]) && isset($_POST["precio"])
 ) {
     $producto = new Producto($_POST["codigobarra"], $_POST["nombre"], $_POST["tipo"], $_POST["stock"], $_POST["precio"]);
-
+    
     $producto->Alta();
 } else {
     echo "asd";
