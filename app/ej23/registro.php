@@ -17,14 +17,14 @@ if (isset($_POST["nombre"]) && isset($_POST["contrasenia"]) && isset($_POST["mai
     
     $usuario1 = new Usuario($_POST["nombre"], $_POST["contrasenia"], $_POST["mail"]);
 
-    // $usuario1->Alta();
+    $usuario1->Alta();
 
     // Creo imagen
     $destino = "Usuarios/Fotos/".$_POST["nombre"];
     
     $backup = "Usuarios/Fotos/VA/".$_POST["nombre"];
     
-    SubirImagen($_FILES["fotoUsuario"], $destino, $backup);
+    SubirImagen($_FILES["fotousuario"], $destino, $backup);
 }else{
 
     echo "asd";
