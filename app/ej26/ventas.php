@@ -42,7 +42,7 @@ class Ventas
             echo (EscribirArchivoJSONobj("venta.json", $this) ? "Venta Realizada" : "No se pudo hacer");
         } else {
 
-            echo "No se encontraron los datos";
+            echo "El producto o el usuario no existen";
         }
     }
 
