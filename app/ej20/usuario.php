@@ -7,11 +7,11 @@ class Usuario
     private $usuario;
     private $contrasenia;
     private $email;
-    private static $listaUsuarios = [];
+    public static $listaUsuarios = [];
 
-    public function __construct(string $nombre, string $apellido, string $email)
+    public function __construct(string $nombre, string $apellido, string $email = null)
     {
-        if($nombre == "" || $apellido == "" || $email == ""){
+        if ($nombre == "" || $apellido == "") {
             throw new Exception("Error, llenar todos los campos");
         }
         $this->usuario = $nombre;
@@ -23,38 +23,94 @@ class Usuario
 
     public function __toString()
     {
-        return "Nombre: {$this->usuario}, conseña: {$this->contrasenia}, Email: {$this->email}";
+        return "{$this->usuario},{$this->contrasenia},{$this->email}";
     }
 
-    public function Alta(){        
-        echo (GuardarUsuarioTxt("Usuarios.csv", $this->__toString()) > 0) ? "Se agrego el usuario correctamente al archivo" : "Error al guardar";
+    public function Alta()
+    {
+        echo (GuardarTxt("Usuarios.csv", $this->__toString()) > 0) ? "Se agrego el usuario correctamente al archivo" : "Error al guardar";
     }
 
-    public static function Listar(){ 
+    public static function Listar()
+    {
 
-        $arrayUsuarios = CargarUsuarioTxt("Usuarios.csv");
-        
+        $arrayUsuarios = CargarTxt("Usuarios.csv");
+
         $listado = $arrayUsuarios;
 
         $listado = "";
-        
-        if($arrayUsuarios !== []){
+
+        if ($arrayUsuarios !== []) {
 
             $listado = "<ul>";
-            
+
             foreach ($arrayUsuarios as $usuario) {
-                
+
                 $atributos = explode(",", $usuario);
 
                 $usuario = new Usuario($atributos[0], $atributos[1], $atributos[2]);
 
-                $listado .= "<li>".$usuario."<li><br>";
+                $listado .= "<li>" . $usuario . "<li><br>";
             }
 
             $listado .= "</ul>";
 
+            Usuario::$listaUsuarios = CargarTxt("Usuarios.csv");
+        } else {
+
+            $listado = "No hay usuarios registrados";
         }
 
         return $listado;
+    }
+
+    public static function UsuarioExiste(Usuario $auxUsuario)
+    {
+        $listadoUsuarios = CargarTxt("Usuarios.csv");
+
+        foreach ($listadoUsuarios as $datos) {
+
+            $atributos = explode(",", $datos);
+
+            $nuevoUsuario = new Usuario($atributos[0], $atributos[1], $atributos[2]);
+
+            $ret = Usuario::CompararUsuarios($nuevoUsuario, $auxUsuario);
+
+            if ($ret != "") {
+
+                return $ret;
+            }
+        }
+        return $ret;
+    }
+    
+    public static function CompararUsuarios($auxUsuario1, $auxUsuario2)
+    {
+        if (isset($auxUsuario1) && isset($auxUsuario2) && is_a($auxUsuario1, "Usuario") && is_a($auxUsuario2, "Usuario")) {
+
+            if (
+                $auxUsuario1->usuario == $auxUsuario2->usuario
+                && $auxUsuario1->contrasenia == $auxUsuario2->contrasenia
+                && $auxUsuario1->email == $auxUsuario2->email
+            ) {
+
+                return "Verificado";
+            } else if (
+                $auxUsuario1->usuario == $auxUsuario2->usuario
+                && $auxUsuario1->contrasenia != $auxUsuario2->contrasenia
+                && $auxUsuario1->email == $auxUsuario2->email
+            ) {
+
+                http_response_code(403);
+                return "Error en los datos";
+            } else if ($auxUsuario1->email != $auxUsuario2->email) {
+
+                http_response_code(403);
+                return "Usuario no registrado";
+            }
+        }
+
+        http_response_code(400);
+        return "Error, no se encontraron datos";
     }
 }

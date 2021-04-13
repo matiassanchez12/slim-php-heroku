@@ -1,7 +1,7 @@
 <?php
 
 //Retorno un array vacio o con datos
-function CargarUsuarioTxt($file_name)
+function CargarTxt($file_name)
 {
     $ret = [];
 
@@ -15,11 +15,11 @@ function CargarUsuarioTxt($file_name)
 
         fclose($file);
     }
-
+    
     return $ret;
 }
 
-function GuardarUsuarioTxt($file_name, $datostxt)
+function GuardarTxt($file_name, $datostxt)
 {
     $ret = 0;
     //El archivo no existe, creo uno nuevo

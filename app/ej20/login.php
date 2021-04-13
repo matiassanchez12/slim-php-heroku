@@ -1,7 +1,4 @@
 <?php
-
-// Archivo: Login.php
-// método:POST
 // Recibe los datos del usuario(clave,mail )por POST ,
 // crear un objeto y utilizar sus métodos para poder verificar si es un usuario registrado,
 // Retorna un :
@@ -12,15 +9,11 @@
 
 require "usuario.php";
 
-try {
+if(isset($_POST["usuario"]) && isset($_POST["contrasenia"]) && isset($_POST["email"])){
+    
+    $usuarioLogged = new Usuario($_POST["usuario"], $_POST["contrasenia"], $_POST["email"]);
 
-    if (isset($_POST["usuario"]) && isset($_POST["contrasenia"]) && isset($_POST["email"])) {
-
-        $usuario = new Usuario($_POST["usuario"], $_POST["contrasenia"], $_POST["email"]);
-
-        $usuario->Alta();
-    }
-} catch (Exception $e) {
-
-    echo $e->getMessage();
+    echo Usuario::UsuarioExiste($usuarioLogged);
 }
+
+?>
