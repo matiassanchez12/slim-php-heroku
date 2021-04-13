@@ -20,11 +20,11 @@ if (isset($_POST["nombre"]) && isset($_POST["contrasenia"]) && isset($_POST["mai
     $usuario1->Alta();
 
     // Creo imagen
-    // $destino = "Usuarios/Fotos/".$_POST["nombre"];
+    $destino = "Usuarios/Fotos/".$_POST["nombre"];
     
-    // $backup = "Usuarios/Fotos/VA/".$_POST["nombre"];
+    $backup = "Usuarios/Fotos/VA/".$_POST["nombre"];
     
-    // SubirImagen($_FILES["fotousuario"], $destino, $backup);
+    SubirImagen($_FILES["fotousuario"], $destino, $backup);
 }else{
 
     echo "asd";
