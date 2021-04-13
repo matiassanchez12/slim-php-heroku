@@ -37,6 +37,7 @@ class Ventas
 
     public function Alta()
     {
+        echo "asd";
         if ($this->ValidarProducto($this->_codBarra, $this->_cantidad) && $this->ValidarUsuario($this->_idUsuario)) {
 
             echo (EscribirArchivoJSONobj("venta.json", $this) ? "Venta Realizada" : "No se pudo hacer");
