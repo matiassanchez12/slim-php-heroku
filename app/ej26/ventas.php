@@ -50,7 +50,7 @@ class Ventas
     public function ValidarProducto($codBarras, $cantidad)
     {
         $arrayProductos = LeerArchivoJSON("../ej25/productos.json");
-
+        echo $codBarras;
         if (isset($codBarras) && $arrayProductos != []) {
 
             foreach ($arrayProductos as $producto) {
@@ -67,7 +67,7 @@ class Ventas
     public function ValidarUsuario($idUsuario)
     {
         $arrayUsuarios = LeerArchivoJSON("../ej23/usuarios.json");
-
+        echo $idUsuario;
         if (isset($idUsuario) && $arrayUsuarios != []) {
 
             foreach ($arrayUsuarios as $usuario) {
